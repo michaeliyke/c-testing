@@ -10,11 +10,11 @@ int main(void)
 
 	for (int i = 0; i < N; i++)
 	{
-		A[i] = i;
+		A[i] = i * i;
 	}
 
 	for (int i = 0; i < N; i++)
 	{
-		printf("%d ", i);
+		printf("%d ", A[i]);
 	}
 }
