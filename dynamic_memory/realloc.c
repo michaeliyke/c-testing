@@ -10,26 +10,26 @@ int main(void)
 	scanf("%d", &N);
 
 	/* calloc initializes with zero but malloc does not */
-	int *A = (int *)calloc(N, sizeof(int));
+	int *A = calloc(N, sizeof(*A));
 	print_ints(A, N);
 
 	// Gain extra memory
 	N = (N + 5);
-	A = (int *)realloc(A, N * sizeof(int));
+	A = realloc(A, N * sizeof(*A));
 	print_ints(A, N);
 
 	// Reduce memory
 	N = N - 6;
-	A = (int *)realloc(A, N * sizeof(int));
+	A = realloc(A, N * sizeof(*A));
 	print_ints(A, N);
 
 	// realloc used like malloc
 	N = N + 6;
-	A = (int *)realloc(NULL, N * sizeof(int));
+	A = realloc(NULL, N * sizeof(*A));
 	print_ints(A, N);
 
 	// realloc used like free
-	A = (int *)realloc(A, 0);
+	A = realloc(A, 0);
 	print_ints(A, N);
 }
 
