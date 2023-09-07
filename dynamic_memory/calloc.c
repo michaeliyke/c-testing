@@ -8,7 +8,7 @@ int main(void)
 	scanf("%d", &N);
 
 	/* calloc initializes with zero but malloc does not */
-	int *A = (int *)calloc(N, sizeof(int));
+	int *A = calloc(N, sizeof(*A));
 
 	for (int i = 0; i < N; i++)
 	{
