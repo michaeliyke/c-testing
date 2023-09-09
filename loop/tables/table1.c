@@ -37,7 +37,7 @@ void print_matrix_sheet(void)
 {
 	int row, col;
 	int matrix_[ROWS][COLS];
-	int *matrix = (int *)matrix_;
+	int *matrix = (int *)matrix_; /* Convert 2-D to 1-D array */
 
 	make_matrix(ROWS, COLS, matrix);
 	for (row = 0; row < ROWS; row++)
