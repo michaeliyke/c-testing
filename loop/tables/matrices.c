@@ -1,12 +1,8 @@
 #ifndef VALS
 #define VALS 1
-#define ROWS 15
-#define COLS 30
-#undef ROWS
-#undef COLS
+#define ROWS 10
+#define COLS 12
 
-#define ROWS 3
-#define COLS 3
 #include <stdlib.h>
 #include <stdio.h>
 #endif
@@ -16,6 +12,8 @@ void print_matrix_sheet(void);
 void make_matrix(int rows, int cols, int *matrix);
 int array_arith(int row, int cols, int col);
 void sum_rows_n_cols(void);
+void sum_2_matices(void);
+void print_matrix_x(int rows, int cols, int *matrix);
 
 /**
  * main - entry point
@@ -30,9 +28,55 @@ int main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 
-	sum_rows_n_cols();
-	print_matrix();
+	sum_2_matices();
 	return (0);
+}
+
+/**
+ * sum_2_matices - print the sum of two matrices
+ *
+ * Return: void
+ */
+void sum_2_matices(void)
+{
+	int a[ROWS][COLS];
+	int b[ROWS][COLS];
+	int c[ROWS][COLS];
+	int row, col;
+
+	make_matrix(ROWS, COLS, (int *)a);
+	make_matrix(ROWS, COLS, (int *)b);
+	make_matrix(ROWS, COLS, (int *)c);
+	for (row = 0; row < ROWS; row++)
+		for (col = 0; col < COLS; col++)
+			c[row][col] = a[row][col] + b[row][col];
+
+	print_matrix_x(ROWS, COLS, (int *)a);
+	putchar('\n');
+	print_matrix_x(ROWS, COLS, (int *)c);
+}
+
+/**
+ * print_matrix_x - print a matrix identified by rows and cols
+ * @rows: rows
+ * @cols: cols
+ *
+ * Return: void
+ */
+void print_matrix_x(int rows, int cols, int *matrix)
+{
+	int row, col;
+
+	for (row = 0; row < rows; row++)
+	{
+		for (col = 0; col < cols; col++)
+		{
+			if (col != 0)
+				putchar(' ');
+			printf("%02d", matrix[array_arith(row, cols, col)]);
+		}
+		putchar('\n');
+	}
 }
 
 /**
