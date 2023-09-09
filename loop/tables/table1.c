@@ -2,6 +2,11 @@
 #define VALS 1
 #define ROWS 15
 #define COLS 30
+#undef ROWS
+#undef COLS
+
+#define ROWS 3
+#define COLS 3
 #include <stdlib.h>
 #include <stdio.h>
 #endif
@@ -10,6 +15,7 @@ void print_matrix(void);
 void print_matrix_sheet(void);
 void make_matrix(int rows, int cols, int *matrix);
 int array_arith(int row, int cols, int col);
+void sum_rows_n_cols(void);
 
 /**
  * main - entry point
@@ -24,8 +30,32 @@ int main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 
-	print_matrix_sheet();
+	sum_rows_n_cols();
+	print_matrix();
 	return (0);
+}
+
+/**
+ * sum_rows_n_cols - sum of individual rows and ols of matrix
+ *
+ * Return: void
+ */
+void sum_rows_n_cols(void)
+{
+	int row, col, sum_cols, sum_rows;
+	int matrix[ROWS][COLS];
+
+	make_matrix(ROWS, COLS, (int *)matrix);
+	for (row = 0; row < ROWS; row++)
+	{
+		sum_cols = 0, sum_rows = 0;
+		for (col = 0; col < COLS; col++)
+		{
+			sum_rows += matrix[col][row];
+			sum_cols += matrix[row][col];
+		}
+		printf("%d %d\n", sum_rows, sum_cols);
+	}
 }
 
 /**
