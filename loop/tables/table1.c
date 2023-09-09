@@ -7,6 +7,7 @@
 #endif
 
 void print_matrix(void);
+void print_matrix_sheet(void);
 void make_matrix(int rows, int cols, int *matrix);
 int array_arith(int row, int cols, int col);
 
@@ -23,8 +24,32 @@ int main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 
-	print_matrix();
+	print_matrix_sheet();
 	return (0);
+}
+
+/**
+ * print_matrix - prints an iteger matrix
+ *
+ * Return: void
+ */
+void print_matrix_sheet(void)
+{
+	int row, col;
+	int matrix_[ROWS][COLS];
+	int *matrix = (int *)matrix_;
+
+	make_matrix(ROWS, COLS, matrix);
+	for (row = 0; row < ROWS; row++)
+	{
+		for (col = 0; col < COLS; col++)
+		{
+			if (col != 0)
+				putchar(' ');
+			printf("%01d", matrix[row * COLS + col]);
+		}
+		putchar('\n');
+	}
 }
 
 /**
