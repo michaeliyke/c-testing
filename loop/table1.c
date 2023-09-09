@@ -2,8 +2,9 @@
 #include <stdlib.h>
 unsigned int count_bits(unsigned long int x);
 char *get_bits2(int n);
-char *get_bits3(int n);
+char *get_bits3(unsigned int n);
 void _strrev(char *a);
+int get_endianness(void);
 
 /**
  * main - entry point
@@ -12,13 +13,14 @@ void _strrev(char *a);
  */
 int main(int argc, char *argv[])
 {
-	int x = 10;
-	char *c;
+	unsigned int x = 10;
+	int c;
+	(void)x;
 
 	if (argc == 2)
 		x = atoi(argv[1]);
-	c = get_bits2(x);
-	printf("%s\n", c);
+	c = get_endianness();
+	printf("%d\n", c);
 	return (0);
 }
 
@@ -42,7 +44,7 @@ char *get_bits2(int n)
 	return (bits);
 }
 
-char *get_bits3(int n)
+char *get_bits3(unsigned int n)
 {
 	char *bits = malloc(sizeof(int) * 65);
 	int i;
@@ -82,4 +84,34 @@ void _strrev(char *a)
 		a--;
 		b++;
 	}
+}
+
+int get_endianness(void)
+{
+	unsigned int i = 15; /* unsigned int i is 4 bytes - 0001 */
+
+	/**
+	 * Get the address of i into a pointer.
+	 * This gives you access to the underlying storage of i in memory
+	 * So c is now a string pointing to the entire value of i in memory
+	 * i.e c = "0001" #Big Endian
+	 * c == 0 #Big Endian
+	 * OR
+	 * c = "1000" #Little Endian
+	 * c === 1 #Little Endian
+	 */
+
+	char *c = (char *)&i;
+
+	(void)c;
+	/* printf("%c\n", *c + '0'); */
+	/* if (*c == 1)
+	{
+		return (1);
+	} */
+
+	for (i = 0; c[i]; i++)
+		printf("%c\n", c[i]);
+
+	return (0);
 }
