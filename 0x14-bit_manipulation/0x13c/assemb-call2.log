@@ -1,0 +1,52 @@
+FOR check_password function
+
+
+
+0x00000000004006bf in main ()
+(gdb) si
+0x00000000004005f6 in check_password ()
+(gdb) disassemble check_password
+Dump of assembler code for function check_password:
+=> 0x00000000004005f6 <+0>:     push   rbp
+   0x00000000004005f7 <+1>:     mov    rbp,rsp
+   0x00000000004005fa <+4>:     sub    rsp,0x20
+   0x00000000004005fe <+8>:     mov    QWORD PTR [rbp-0x18],rdi
+   0x0000000000400602 <+12>:    mov    rax,QWORD PTR [rbp-0x18]
+   0x0000000000400606 <+16>:    mov    rdi,rax
+   0x0000000000400609 <+19>:    call   0x4004c0 <strlen@plt>
+   0x000000000040060e <+24>:    cmp    rax,0x4
+   0x0000000000400612 <+28>:    je     0x40061b <check_password+37>
+   0x0000000000400614 <+30>:    mov    eax,0x0
+   0x0000000000400619 <+35>:    jmp    0x400673 <check_password+125>
+   0x000000000040061b <+37>:    mov    DWORD PTR [rbp-0x4],0x46c6f48
+   0x0000000000400622 <+44>:    mov    BYTE PTR [rbp-0x5],0xff
+   0x0000000000400626 <+48>:    mov    BYTE PTR [rbp-0x6],0x0
+   0x000000000040062a <+52>:    jmp    0x400668 <check_password+114>
+   0x000000000040062c <+54>:    movzx  edx,BYTE PTR [rbp-0x6]
+   0x0000000000400630 <+58>:    mov    rax,QWORD PTR [rbp-0x18]
+   0x0000000000400634 <+62>:    add    rax,rdx
+   0x0000000000400637 <+65>:    movzx  eax,BYTE PTR [rax]
+   0x000000000040063a <+68>:    movzx  eax,al
+   0x000000000040063d <+71>:    movzx  edx,BYTE PTR [rbp-0x6]
+   0x0000000000400641 <+75>:    shl    edx,0x3
+   0x0000000000400644 <+78>:    mov    esi,DWORD PTR [rbp-0x4]
+   0x0000000000400647 <+81>:    mov    ecx,edx
+   0x0000000000400649 <+83>:    shr    esi,cl
+   0x000000000040064b <+85>:    mov    ecx,esi
+   0x000000000040064d <+87>:    movzx  edx,BYTE PTR [rbp-0x5]
+   0x0000000000400651 <+91>:    and    edx,ecx
+--Type <RET> for more, q to quit, c to continue without paging--
+   0x0000000000400653 <+93>:    cmp    eax,edx
+   0x0000000000400655 <+95>:    je     0x40065e <check_password+104>
+   0x0000000000400657 <+97>:    mov    eax,0x0
+   0x000000000040065c <+102>:   jmp    0x400673 <check_password+125>
+   0x000000000040065e <+104>:   movzx  eax,BYTE PTR [rbp-0x6]
+   0x0000000000400662 <+108>:   add    eax,0x1
+   0x0000000000400665 <+111>:   mov    BYTE PTR [rbp-0x6],al
+   0x0000000000400668 <+114>:   cmp    BYTE PTR [rbp-0x6],0x3
+   0x000000000040066c <+118>:   jbe    0x40062c <check_password+54>
+   0x000000000040066e <+120>:   mov    eax,0x1
+   0x0000000000400673 <+125>:   leave
+   0x0000000000400674 <+126>:   ret
+End of assembler dump.
+(gdb)

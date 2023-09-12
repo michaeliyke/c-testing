@@ -1,0 +1,81 @@
+#!/bin/bash
+
+clear
+
+if [[ -e "bin.c" ]]; then rm "bin.c";
+fi
+touch "bin.c"
+
+# Add external file
+echo "#include <stdio.h>" >> "bin.c"
+echo "#include <stdlib.h>" >> "bin.c"
+echo "" >> "bin.c"
+
+# Add function prototypes
+echo "char *get_bits(int n);" >> "bin.c"
+echo "void _strrev(char *a);" >> "bin.c"
+echo "" >> "bin.c"
+
+# Start creating function: main
+# The main  function is where execution starts
+echo "int main(int argc, char *argv[])" >> "bin.c"
+echo "{" >> "bin.c"
+echo "int x = 10;" >> "bin.c"
+echo "char *c;" >> "bin.c"
+echo "" >> "bin.c"
+echo "if (argc == 2)" >> "bin.c"
+echo "        x = atoi(argv[1]);" >> "bin.c"
+echo "else" >> "bin.c"
+echo "{" >> "bin.c"
+echo "printf(\"Usage: bin num\n\");" >> "bin.c"
+echo "return (1);" >> "bin.c"
+echo "}" >> "bin.c"
+echo "c = get_bits(x);" >> "bin.c"
+echo "printf(\"%s\n\", c);" >> "bin.c"
+echo "return (0);" >> "bin.c"
+echo "}" >> "bin.c"
+
+# Start creating function: get_bits
+# The get_bits  function helps to get the bits of an integer as string
+echo "char *get_bits(int n)" >> "bin.c"
+echo "{" >> "bin.c"
+echo "char *bits = malloc(sizeof(int) * 65);" >> "bin.c"
+echo "int i;" >> "bin.c"
+echo "" >> "bin.c"
+echo "for (i = 0; n; i++, n >>= 1)" >> "bin.c"
+echo "{" >> "bin.c"
+echo "bits[i] = (n & 1) + '0';" >> "bin.c"
+echo "}" >> "bin.c"
+echo "bits[i] = '\0';" >> "bin.c"
+echo "_strrev(bits);" >> "bin.c"
+echo "return (bits);" >> "bin.c"
+echo "}" >> "bin.c"
+echo "" >> "bin.c"
+
+
+# Start creating function: _strrev
+# The _strrev  function helps to reverse a string
+echo "void _strrev(char *a)" >> "bin.c"
+echo "{" >> "bin.c"
+echo "char *b = a;" >> "bin.c"
+echo "char temp;" >> "bin.c"
+echo "" >> "bin.c"
+echo "while (*a != '\0')" >> "bin.c"
+echo "{" >> "bin.c"
+echo "a++;" >> "bin.c"
+echo "}" >> "bin.c"
+echo "a--;" >> "bin.c"
+echo "while (a > b)" >> "bin.c"
+echo "{" >> "bin.c"
+echo "temp = *a;" >> "bin.c"
+echo "*a = *b;" >> "bin.c"
+echo "*b = temp;" >> "bin.c"
+echo "a--;" >> "bin.c"
+echo "b++;" >> "bin.c"
+echo "}" >> "bin.c"
+echo "}" >> "bin.c"
+echo "" >> "bin.c"
+
+compile "bin.c" -o a.out
+./a.out $*
+rm "bin.c"

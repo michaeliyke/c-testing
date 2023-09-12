@@ -1,0 +1,36 @@
+FOR main function
+
+0x0000000000400675 <+0>:     push   rbp
+   0x0000000000400676 <+1>:     mov    rbp,rsp
+   0x0000000000400679 <+4>:     sub    rsp,0x20
+   0x000000000040067d <+8>:     mov    DWORD PTR [rbp-0x14],edi
+   0x0000000000400680 <+11>:    mov    QWORD PTR [rbp-0x20],rsi
+   0x0000000000400684 <+15>:    cmp    DWORD PTR [rbp-0x14],0x2
+   0x0000000000400688 <+19>:    je     0x4006b1 <main+60>
+   0x000000000040068a <+21>:    mov    rax,QWORD PTR [rbp-0x20]
+   0x000000000040068e <+25>:    mov    rdx,QWORD PTR [rax]
+   0x0000000000400691 <+28>:    mov    rax,QWORD PTR [rip+0x2009c8]        # 0x601060 <stderr@@GLIBC_2.2.5>
+   0x0000000000400698 <+35>:    mov    esi,0x400774
+   0x000000000040069d <+40>:    mov    rdi,rax
+   0x00000000004006a0 <+43>:    mov    eax,0x0
+   0x00000000004006a5 <+48>:    call   0x4004e0 <fprintf@plt>
+   0x00000000004006aa <+53>:    mov    eax,0x1
+   0x00000000004006af <+58>:    jmp    0x4006ed <main+120>
+   0x00000000004006b1 <+60>:    mov    rax,QWORD PTR [rbp-0x20]
+   0x00000000004006b5 <+64>:    add    rax,0x8
+   0x00000000004006b9 <+68>:    mov    rax,QWORD PTR [rax]
+   0x00000000004006bc <+71>:    mov    rdi,rax
+   0x00000000004006bf <+74>:    call   0x4005f6 <check_password>
+   0x00000000004006c4 <+79>:    mov    DWORD PTR [rbp-0x4],eax
+   0x00000000004006c7 <+82>:    cmp    DWORD PTR [rbp-0x4],0x1
+   0x00000000004006cb <+86>:    jne    0x4006de <main+105>
+   0x00000000004006cd <+88>:    mov    edi,0x400788
+   0x00000000004006d2 <+93>:    call   0x4004b0 <puts@plt>
+   0x00000000004006d7 <+98>:    mov    eax,0x0
+   0x00000000004006dc <+103>:   jmp    0x4006ed <main+120>
+--Type <RET> for more, q to quit, c to continue without paging--
+   0x00000000004006de <+105>:   mov    edi,0x400799
+   0x00000000004006e3 <+110>:   call   0x4004b0 <puts@plt>
+   0x00000000004006e8 <+115>:   mov    eax,0x1
+   0x00000000004006ed <+120>:   leave
+   0x00000000004006ee <+121>:   ret
